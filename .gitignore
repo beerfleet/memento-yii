@@ -35,3 +35,5 @@ tests/_support/_generated
 #vagrant folder
 /.vagrant
 PROJECT-NOTES.txt
+memento_basic_first.sql
+PROJECT-NOTES.docx
