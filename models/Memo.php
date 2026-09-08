@@ -18,7 +18,13 @@ use Yii;
  */
 class Memo extends \yii\db\ActiveRecord
 {
-
+    /**
+     * Holds the submitted tag names for the form.
+     * This is not a database field; it is just used to send many-to-many values to the relation sync.
+     *
+     * @var array
+     */
+    public $tagNames = [];
 
     /**
      * {@inheritdoc}
@@ -40,6 +46,7 @@ class Memo extends \yii\db\ActiveRecord
             [['name'], 'string', 'max' => 50],
             [['name'], 'unique'],
             [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => Type::class, 'targetAttribute' => ['type_id' => 'id']],
+            [['tagNames'], 'safe'],
         ];
     }
 
@@ -52,7 +59,8 @@ class Memo extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
             'description' => 'Description',
-            'type_id' => 'Type ID',
+            'type_id' => 'Type',
+            'tagNames' => 'Tags',
         ];
     }
 
@@ -74,6 +82,24 @@ class Memo extends \yii\db\ActiveRecord
     public function getTags()
     {
         return $this->hasMany(Tag::class, ['id' => 'tag_id'])->viaTable('memo_tag', ['memo_id' => 'id']);
+    }
+
+    /**
+     * @return array
+     */
+    public function getTagNames()
+    {
+        return $this->getTags()->select('name')->column();
+    }
+
+    /**
+     * @param array $names
+     */
+    public function setTagNames($names)
+    {
+        $this->tagNames = array_values(array_filter((array) $names, static function ($name) {
+            return $name !== null && $name !== '';
+        }));
     }
 
     /**

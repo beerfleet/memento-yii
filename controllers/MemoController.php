@@ -7,6 +7,7 @@ use app\models\MemoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Tag;
 
 /**
  * MemoController implements the CRUD actions for Memo model.
@@ -22,7 +23,7 @@ class MemoController extends Controller
             parent::behaviors(),
             [
                 'verbs' => [
-                    'class' => VerbFilter::className(),
+                    'class' => VerbFilter::class,
                     'actions' => [
                         'delete' => ['POST'],
                     ],
@@ -70,11 +71,15 @@ class MemoController extends Controller
         $model = new Memo();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+            if ($model->load($this->request->post())) {
+                if ($model->save()) {
+                    $this->assignTagsToMemo($model, $model->tagNames ?? []);
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
             }
         } else {
             $model->loadDefaultValues();
+            $model->tagNames = [];
         }
 
         return $this->render('create', [
@@ -92,9 +97,15 @@ class MemoController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $model->tagNames = $model->getTagNames();
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($this->request->isPost) {
+            if ($model->load($this->request->post())) {
+                if ($model->save()) {
+                    $this->assignTagsToMemo($model, $model->tagNames ?? []);
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
+            }
         }
 
         return $this->render('update', [
@@ -130,5 +141,31 @@ class MemoController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    /**
+     * Assigns tags to a memo.
+     * @param Memo $memo
+     * @param array $tagNames
+     */
+    private function assignTagsToMemo($memo, $tagNames)
+    {
+        $tagNames = array_values(array_filter((array) $tagNames, static fn($tagName) => $tagName !== null && $tagName !== ''));
+        $existing = array_map(static fn($tag) => $tag->name, $memo->tags);
+
+        foreach (array_values(array_diff($existing, $tagNames)) as $tagName) {
+            $tag = Tag::findOne(['name' => $tagName]);
+            if ($tag) {
+                $memo->unlink('tags', $tag, true);
+            }
+        }
+
+        foreach (array_values(array_diff($tagNames, $existing)) as $tagName) {
+            $tag = Tag::findOne(['name' => $tagName]) ?: new Tag(['name' => $tagName]);
+            if ($tag->isNewRecord && !$tag->save()) {
+                continue;
+            }
+            $memo->link('tags', $tag);
+        }
     }
 }
