@@ -93,16 +93,6 @@ class Memo extends \yii\db\ActiveRecord
     }
 
     /**
-     * @param array $names
-     */
-    public function setTagNames($names)
-    {
-        $this->tagNames = array_values(array_filter((array) $names, static function ($name) {
-            return $name !== null && $name !== '';
-        }));
-    }
-
-    /**
      * Gets query for [[Type]].
      *
      * @return \yii\db\ActiveQuery|TypeQuery
