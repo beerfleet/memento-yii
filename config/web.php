@@ -51,11 +51,20 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                // tags
                 'tags' => 'tag/index',
                 'tags/<id:\d+>' => 'tag/view',
                 'tags/<id:\d+>/update' => 'tag/update',
                 'tags/<id:\d+>/delete' => 'tag/delete',
                 'tags/create' => 'tag/create',
+                
+                // types
+                'types' => 'type/index',
+                'types/<id:\d+>' => 'type/view',
+                'types/<id:\d+>/update' => 'type/update',
+                'types/<id:\d+>/delete' => 'type/delete',
+                'types/create' => 'type/create',
+
             ],
         ],
     ],
