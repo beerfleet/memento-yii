@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\models\Type;
+
 
 /** @var yii\web\View $this */
 /** @var app\models\Memo $model */
@@ -16,7 +18,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'type_id')->textInput() ?>
+    <?= $form->field($model, 'type')->dropDownList(
+        Type::find()
+            ->select(['name', 'id'])
+            ->indexBy('id')
+            ->column(),
+        ['prompt' => 'Select a type']
+    ) ?>
 
     <div class="form-group mt-3">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
