@@ -16,6 +16,8 @@ class m260907_125746_create_tag_table extends Migration
             'id' => $this->primaryKey(),
             'name' => $this->string(50)->notNull()->unique(),
         ]);
+
+        $this->addCommentOnTable('{{%tag}}','Memo tag. a memo can have multiple tags. A tag can be shared by several memos.');
     }
 
     /**

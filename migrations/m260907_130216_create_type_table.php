@@ -16,6 +16,8 @@ class m260907_130216_create_type_table extends Migration
             'id' => $this->primaryKey(),
             'name' => $this->string(50)->notNull()->unique(),
         ]);
+
+        $this->addCommentOnTable('{{%type}}','Memo type. It\'s a category. A memo belongs to one category.');
     }
 
     /**
