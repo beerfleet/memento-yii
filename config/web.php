@@ -16,6 +16,14 @@ $config = [
                 'viewPath' => '@app/mail',
             ],
         ],
+        'definitions' => [
+            \yii\widgets\LinkPager::class => \yii\bootstrap5\LinkPager::class,
+            'yii\bootstrap5\LinkPager' => [
+                'firstPageLabel' => 'First',
+                'lastPageLabel' => 'Last',
+                'options' => ['class' => 'pagination pagination-primary mg-sm-b-0']
+            ],
+        ],
     ],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
@@ -57,7 +65,7 @@ $config = [
                 'tags/<id:\d+>/update' => 'tag/update',
                 'tags/<id:\d+>/delete' => 'tag/delete',
                 'tags/create' => 'tag/create',
-                
+
                 // types
                 'types' => 'type/index',
                 'types/<id:\d+>' => 'type/view',
