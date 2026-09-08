@@ -27,6 +27,13 @@ $items = [
             ['label' => 'Create Type', 'url' => ['/type/create']],
         ],
     ],
+    [
+        'label' => 'Memos',
+        'items' => [
+            ['label' => 'All Memos', 'url' => ['/memo/index']],
+            ['label' => 'Create Memo', 'url' => ['/memo/create']],
+        ],
+    ],
     
     /* [
         'label' => 'About',

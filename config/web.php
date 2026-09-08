@@ -73,6 +73,12 @@ $config = [
                 'types/<id:\d+>/delete' => 'type/delete',
                 'types/create' => 'type/create',
 
+                // memos
+                'memos' => 'memo/index',
+                'memos/<id:\d+>' => 'memo/view',
+                'memos/<id:\d+>/update' => 'memo/update',
+                'memos/<id:\d+>/delete' => 'memo/delete',
+                'memos/create' => 'memo/create',
             ],
         ],
     ],
