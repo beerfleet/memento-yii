@@ -14,6 +14,21 @@ $items = [
         'url' => ['/site/index'],
     ],
     [
+        'label' => 'Tags',
+        'items' => [
+            ['label' => 'All Tags', 'url' => ['/tag/index']],
+            ['label' => 'Create Tag', 'url' => ['/tag/create']],
+        ],
+    ],
+    [
+        'label' => 'Types',
+        'items' => [
+            ['label' => 'All Types', 'url' => ['/type/index']],
+            ['label' => 'Create Type', 'url' => ['/type/create']],
+        ],
+    ],
+    
+    /* [
         'label' => 'About',
         'url' => ['/site/about'],
     ],
@@ -34,7 +49,7 @@ $items = [
             'class' => 'nav-link logout',
         ],
         'visible' => !Yii::$app->user->isGuest,
-    ],
+    ], */
 ];
 
 ?>
