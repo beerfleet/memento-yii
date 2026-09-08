@@ -15,11 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tag-index">
 
-    <h1 class="mb-4"><?= Html::encode($this->title) ?></h1>
+    <h1><?= Html::encode($this->title) ?></h1>
 
-    <div class="mb-3">
+    <p>
         <?= Html::a('Create Tag', ['create'], ['class' => 'btn btn-success']) ?>
-    </div>
+    </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
             'filterModel' => $searchModel,
-            'options' => ['class' => 'table table-striped table-bordered'],
+            'options' => ['class' => 'grid-view table-responsive table-striped table-bordered'],
             'columns' => [
                 [
                     'attribute' => 'name',
