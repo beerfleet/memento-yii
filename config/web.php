@@ -51,6 +51,11 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'tags' => 'tag/index',
+                'tags/<id:\d+>' => 'tag/view',
+                'tags/<id:\d+>/update' => 'tag/update',
+                'tags/<id:\d+>/delete' => 'tag/delete',
+                'tags/create' => 'tag/create',
             ],
         ],
     ],
