@@ -62,7 +62,7 @@ $items = [
 ?>
 <?= Html::style("
     .custom-navbar {
-        background-color: #aaa353 !important;
+        background-color: #f5f5dc !important;
         min-height: 82px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
     }

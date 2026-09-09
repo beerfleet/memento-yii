@@ -52,7 +52,20 @@ $features = [
 <div class="site-index">
     <!-- ... existing hero_banner code ... -->
     <div class="hero-banner text-white rounded-4 p-5 mb-4 position-relative overflow-hidden">
-        <!-- ... existing banner content ... -->
+        <div class="container position-relative" style="z-index: 2;">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="display-4 fw-bold mb-3">Organize Your Thoughts, <span class="text-warning">Simplify Your
+                            Workflow.</span></h1>
+                    <p class="lead mb-4 fs-4 text-dark">A streamlined workspace to manage memos, categorize data types,
+                        and organize your projects with intuitive tagging. Built for speed, designed for clarity.</p>
+                </div>
+            </div>
+        </div>
+        <div class="hero-logo">
+            <!-- Optional: Replace with a decorative icon or logo if available -->
+            <i class="bi bi-layers" style="font-size: 10rem; opacity: 0.2;"></i>
+        </div>
     </div>
 
     <!-- Features grid -->
