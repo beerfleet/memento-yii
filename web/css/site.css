@@ -1,5 +1,5 @@
-main > .container {
-    padding: 70px 15px 20px;
+main>.container {
+    padding: 30px 15px 20px;
     display: flex;
     flex-direction: column;
     min-height: 100%;
@@ -11,7 +11,8 @@ main > .container {
 }
 
 /* add sorting icons to gridview sort links */
-a.asc:after, a.desc:after {
+a.asc:after,
+a.desc:after {
     content: '';
     left: 3px;
     display: inline-block;
@@ -56,13 +57,13 @@ a.desc:after {
 }
 
 /* align navbar brand baseline with nav links */
-.navbar > .container,
-.navbar > .container-fluid {
+.navbar>.container,
+.navbar>.container-fluid {
     align-items: baseline;
 }
 
 /* align the logout "link" (button in form) of the navbar */
-.nav li > form > button.logout {
+.nav li>form>button.logout {
     color: var(--bs-navbar-color);
 }
 
@@ -81,10 +82,17 @@ a.desc:after {
 }
 
 /* footer logo: light logo by default (light bg-body-tertiary), dark logo for dark theme */
-.footer-logo-dark { display: none; }
+.footer-logo-dark {
+    display: none;
+}
 
-[data-bs-theme="dark"] .footer-logo-light { display: none; }
-[data-bs-theme="dark"] .footer-logo-dark  { display: inline-block; }
+[data-bs-theme="dark"] .footer-logo-light {
+    display: none;
+}
+
+[data-bs-theme="dark"] .footer-logo-dark {
+    display: inline-block;
+}
 
 /* login inputs: seamless icon inside input (Volt style) */
 .login-split-card .input-group {
@@ -120,7 +128,7 @@ a.desc:after {
 
 /* validation styles for login split card (browsers with :has()) */
 @supports selector(.input-group:has(.is-invalid)) {
-    .login-split-card .input-group:has(.is-invalid) ~ .invalid-feedback {
+    .login-split-card .input-group:has(.is-invalid)~.invalid-feedback {
         display: block;
         margin-top: .35rem;
         margin-bottom: .5rem;
@@ -252,6 +260,7 @@ a.desc:after {
 }
 
 @media (min-width: 576px) {
+
     .site-error .site-error-content,
     .site-about .site-about-content,
     .site-contact-success .site-contact-success-content {
@@ -260,6 +269,7 @@ a.desc:after {
 }
 
 @media (min-width: 768px) {
+
     .site-error .site-error-content,
     .site-about .site-about-content,
     .site-contact-success .site-contact-success-content {
@@ -268,6 +278,7 @@ a.desc:after {
 }
 
 @media (min-width: 992px) {
+
     .site-error .site-error-content,
     .site-about .site-about-content,
     .site-contact-success .site-contact-success-content {
@@ -277,7 +288,8 @@ a.desc:after {
 
 /* hero banner */
 .hero-banner {
-    background: linear-gradient(135deg, #83C933 0%, #3a9cbd 40%, #40B3D8 100%);
+    background: #f5f5dc;
+    /* Light beige color for "dirty paper" effect */
     position: relative;
 }
 
@@ -298,10 +310,6 @@ a.desc:after {
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    background:
-        radial-gradient(circle at 15% 85%, rgba(241, 138, 42, .3) 0%, transparent 45%),
-        radial-gradient(circle at 85% 15%, rgba(131, 201, 51, .25) 0%, transparent 40%),
-        radial-gradient(ellipse at 50% 50%, rgba(64, 179, 216, .15) 0%, transparent 60%);
     pointer-events: none;
 }
 

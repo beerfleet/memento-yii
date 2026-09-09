@@ -60,12 +60,36 @@ $items = [
 ];
 
 ?>
+<?= Html::style("
+    .custom-navbar {
+        background-color: #aaa353 !important;
+        min-height: 82px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    }
+    .custom-navbar .navbar-brand,
+    .custom-navbar .nav-link {
+        color: #2d2200 !important;
+    }
+    .custom-navbar .navbar-brand {
+        font-size: 1.5rem;
+        padding-top: 0.9rem;
+        padding-bottom: 0.9rem;
+    }
+    .custom-navbar .navbar-nav .nav-link {
+        padding-top: 1.1rem;
+        padding-bottom: 1.1rem;
+        font-size: 1.05rem;
+    }
+    body {
+        padding-top: 96px;
+    }
+"); ?>
 <header id="header">
     <?php NavBar::begin(
         [
             'brandLabel' => Yii::$app->name,
             'brandUrl' => Yii::$app->homeUrl,
-            'options' => ['class' => 'navbar-expand-md navbar-dark bg-dark fixed-top']
+            'options' => ['class' => 'navbar-expand-md navbar-light custom-navbar fixed-top']
         ],
     ) ?>
     <?= Nav::widget(
