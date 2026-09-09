@@ -42,6 +42,11 @@ a.desc:after {
     color: var(--bs-secondary-color);
 }
 
+.help-block {
+    display: block;
+    color: red;
+}
+
 .error-summary {
     color: var(--bs-danger-text-emphasis);
     background: var(--bs-danger-bg-subtle);
