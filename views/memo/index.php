@@ -40,7 +40,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     'headerOptions' => ['class' => 'text-center'],
                 ],
                 [
-                    'attribute' => 'type_id',
+                    'attribute' => 'type.name',
+                    'value' => function (Memo $model) {
+                        return $model->type ? $model->type->name : '';
+                    },
+                    'filter' => Html::activeTextInput($searchModel, 'typeName', ['class' => 'form-control']),
                     'headerOptions' => ['class' => 'text-center'],
                 ],
                 [

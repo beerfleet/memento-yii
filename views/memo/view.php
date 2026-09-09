@@ -32,7 +32,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'name',
             'description:ntext',
-            'type_id',
+            [   
+                'attribute' => 'type.name',
+                'label' => 'Type',
+            ],
         ],
     ]) ?>
 

@@ -11,6 +11,8 @@ use app\models\Memo;
  */
 class MemoSearch extends Memo
 {
+    public $typeName;
+
     /**
      * {@inheritdoc}
      */
@@ -18,7 +20,7 @@ class MemoSearch extends Memo
     {
         return [
             [['id', 'type_id'], 'integer'],
-            [['name', 'description'], 'safe'],
+            [['name', 'description', 'typeName'], 'safe'],
         ];
     }
 
@@ -41,12 +43,25 @@ class MemoSearch extends Memo
      */
     public function search($params, $formName = null)
     {
-        $query = Memo::find();
+        $query = Memo::find()->joinWith(['type']);
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => [
+                'attributes' => [
+                    'id',
+                    'name',
+                    'description',
+                    'type_id',
+                    'type.name' => [
+                        'asc' => ['type.name' => SORT_ASC],
+                        'desc' => ['type.name' => SORT_DESC],
+                        'default' => SORT_ASC,
+                    ],
+                ],
+            ],
         ]);
 
         $this->load($params, $formName);
@@ -64,7 +79,8 @@ class MemoSearch extends Memo
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'description', $this->description]);
+            ->andFilterWhere(['like', 'description', $this->description])
+            ->andFilterWhere(['like', 'type.name', $this->typeName]);
 
         return $dataProvider;
     }
