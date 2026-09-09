@@ -17,6 +17,8 @@ class m260907_130934_create_memo_table extends Migration
             'name' => $this->string(50)->notNull()->unique(),
             'description' => $this->text()->notNull(),
             'type_id' => $this->integer()->notNull(),
+            'created_at' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'), 
+            'updated_at' => $this->timestamp()->notNull(), 
         ]);
 
         $this->addForeignKey(

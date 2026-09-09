@@ -23,4 +23,17 @@ final class MemoModelTest extends \Codeception\Test\Unit
 
         verify($memo->tagNames)->equals(['urgent', 'follow-up']);
     }
+
+    public function testTimestampBehaviorUsesDatabaseDatetimeFormat(): void
+    {
+        $memo = new Memo();
+        $memo->name = 'timestamp regression';
+        $memo->description = 'Should be stored as a SQL datetime';
+        $memo->type_id = 1;
+
+        $memo->beforeSave(true);
+
+        verify($memo->created_at)->matches('/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/');
+        verify($memo->updated_at)->matches('/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/');
+    }
 }
