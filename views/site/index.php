@@ -70,18 +70,12 @@ $features = [
                         </p>
                     </div>
                     <div class="card-footer bg-transparent border-0 pt-0">
-                        <?= Html::a(
-                            'Go &raquo;',
-                            Yii::$app->homeUrl . $feature['link'],
-                            [
-                                'class' => 'btn btn-sm btn-outline-secondary',
-                                'rel' => 'noopener',
-                                'target' => '_blank',
-                            ],
-                        ) ?>
+                        <a href="<?= Yii::$app->homeUrl . $feature['link'] ?>" class="stretched-link" rel="noopener">
+                        </a>
                     </div>
                 </div>
             </div>
         <?php endforeach; ?>
     </div>
+</div>
 </div>
